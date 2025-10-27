@@ -40,11 +40,160 @@
         "disableProgress": false
     },
     {
+        "id": "aa342e88ab08b866",
+        "type": "inject",
+        "z": "c737e2cbf16bff78",
+        "name": "Startup",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "foo",
+                "v": "ENV_OLGS",
+                "vt": "env"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "0aaa6a9cfb8170c3"
+            ]
+        ]
+    },
+    {
+        "id": "0aaa6a9cfb8170c3",
+        "type": "olfnf-folder-listing",
+        "z": "c737e2cbf16bff78",
+        "folder": "ENV_OLGS",
+        "folder_type": "env",
+        "sortby": "name",
+        "subfolder": true,
+        "filter": "files",
+        "ignoreempty": false,
+        "masks": "*.OL-template,*.OL-datamapper, *.OL-jobpreset, *.OL-outputpreset",
+        "masksregex": false,
+        "output": "paths",
+        "name": "",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "09e93da155629858"
+            ]
+        ]
+    },
+    {
+        "id": "a52c9591a8e7bc18",
+        "type": "debug",
+        "z": "c737e2cbf16bff78",
+        "name": "debug persisted files",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "38afd96cd1fdb8da",
+        "type": "olcnr-file-upload",
+        "z": "c737e2cbf16bff78",
+        "connect_server": "2092e77360f6dade",
+        "filename": "payload",
+        "filename_type": "msg",
+        "deletefile": false,
+        "fileDuration": "permanent",
+        "name": "file store upload",
+        "x": 560,
+        "y": 160,
+        "wires": [
+            [
+                "03784c82a9cb3e0f"
+            ]
+        ]
+    },
+    {
+        "id": "09e93da155629858",
+        "type": "split",
+        "z": "c737e2cbf16bff78",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "38afd96cd1fdb8da"
+            ]
+        ]
+    },
+    {
+        "id": "ad3df1a2701ae07b",
+        "type": "comment",
+        "z": "c737e2cbf16bff78",
+        "name": "Read me: Deploy resources to OL Connect's File Store on startup",
+        "info": "Deploy OL Connect resources (templates, data mapping configurations, job presets, output presets) to OL Connect's File Store on deploying the flow to Node-RED.\n\n## Prerequisites\n - In the settings of the **file store upload** node, select the OL Connect Server to which the resources must be uploaded. \n - Create the following directory in the root of your drive before deploying this example:\n    - `\\workspace`\n - Place your OL Connect resources in this folder (or use subfolders). \n \n## Background information\nThe **inject** node is configured to trigger this flow once on deploying the flow. The resources overwrite any resources in the OL Connect Server that were previously uploaded. The **folder listing** node returns an array with file paths in `msg.payload`.\n\nThe **split** node iterates over the entries in  this array. Subsequently, the **file store upload** node uploads the file to the OL Connect Server.\n\nThis flow could be used to initialize context variables, or to send a notification that Node-RED has been restarted.",
+        "x": 290,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7cdb2ee8e3f12453",
+        "type": "comment",
+        "z": "c737e2cbf16bff78",
+        "name": "Example: startup flow",
+        "info": "startup flows/01 - Deploy OL Connect resources.json",
+        "x": 160,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "03784c82a9cb3e0f",
+        "type": "join",
+        "z": "c737e2cbf16bff78",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 710,
+        "y": 160,
+        "wires": [
+            [
+                "a52c9591a8e7bc18"
+            ]
+        ]
+    },
+    {
         "id": "39120d5a35d860de",
         "type": "olfnf-folder-capture-in",
         "z": "f85f89256a27386d",
-        "folder": "C:\\workspace_olca\\gettingstarted\\invoices\\in",
-        "folder_type": "str",
+        "folder": "$env(\"ENV_WORKSPACE\") & \"/gettingstarted/invoices/in/\"",
+        "folder_type": "jsonata",
         "create_directory": true,
         "subfolder": false,
         "ignoreempty": true,
@@ -53,7 +202,7 @@
         "watchMethod": "fs",
         "name": "",
         "x": 130,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "7756c0c3c370636b"
@@ -72,7 +221,7 @@
         "deletefile": false,
         "name": "",
         "x": 370,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "5f36c43b6dd2d515"
@@ -87,7 +236,7 @@
         "template": "invoice.OL-template",
         "name": "",
         "x": 600,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "f1987038b784b0eb"
@@ -101,7 +250,7 @@
         "name": "Basic print content creation flow",
         "info": "",
         "x": 190,
-        "y": 280,
+        "y": 440,
         "wires": []
     },
     {
@@ -113,12 +262,12 @@
         "outputFolder": "C:\\workspace_olca\\gettingstarted\\invoices\\out\\",
         "outputFolder_type": "str",
         "create_directory": false,
-        "outputFilesToFolder": "C:\\workspace_olca\\gettingstarted\\invoices\\out",
-        "outputFilesToFolder_type": "str",
+        "outputFilesToFolder": "$env(\"ENV_WORKSPACE\") & \"/gettingstarted/invoices/out/\"",
+        "outputFilesToFolder_type": "jsonata",
         "outputOptions": "sendFilesToFolder",
         "name": "",
         "x": 840,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "ebe2423229eab236"
@@ -137,7 +286,7 @@
         "create_directory": true,
         "name": "move data file",
         "x": 1060,
-        "y": 320,
+        "y": 480,
         "wires": [
             []
         ]
@@ -149,7 +298,7 @@
         "name": "Inject sample data",
         "info": "",
         "x": 150,
-        "y": 80,
+        "y": 300,
         "wires": []
     },
     {
@@ -159,13 +308,7 @@
         "name": "10 records",
         "props": [
             {
-                "p": "source",
-                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\data\\invoices-10.xml",
-                "vt": "str"
-            },
-            {
-                "p": "target",
-                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\in\\invoices-10.xml",
+                "p": "topic",
                 "vt": "str"
             }
         ],
@@ -173,9 +316,9 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "invoices-10.xml",
         "x": 120,
-        "y": 120,
+        "y": 340,
         "wires": [
             [
                 "2523b93b025e25e8"
@@ -187,16 +330,18 @@
         "type": "olfnf-file-operations",
         "z": "f85f89256a27386d",
         "operation": "copy",
-        "source_file": "source",
-        "source_file_type": "msg",
-        "target_file": "target",
-        "target_file_type": "msg",
+        "source_file": "$env(\"ENV_OLGS\") & \"/resources/invoice/data/\" & topic",
+        "source_file_type": "jsonata",
+        "target_file": "$env(\"ENV_WORKSPACE\") & \"/gettingstarted/invoices/in/\" & topic",
+        "target_file_type": "jsonata",
         "create_directory": true,
         "name": "",
         "x": 340,
-        "y": 120,
+        "y": 340,
         "wires": [
-            []
+            [
+                "b8560970931e584f"
+            ]
         ]
     },
     {
@@ -216,7 +361,7 @@
         "onceDelay": 0.1,
         "topic": "invoices-100.xml",
         "x": 130,
-        "y": 160,
+        "y": 380,
         "wires": [
             [
                 "2523b93b025e25e8"
@@ -224,34 +369,85 @@
         ]
     },
     {
-        "id": "8b31c00fda032c4f",
-        "type": "inject",
+        "id": "2fcc5c3e85c21376",
+        "type": "http in",
         "z": "f85f89256a27386d",
-        "name": "1k records",
-        "props": [
-            {
-                "p": "source",
-                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\data\\invoices-10.xml",
-                "vt": "str"
-            },
-            {
-                "p": "target",
-                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\in\\invoices-10.xml",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 120,
-        "y": 200,
+        "name": "",
+        "url": "certificate",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 120,
         "wires": [
             [
-                "2523b93b025e25e8"
+                "9777edb0585c6724"
             ]
         ]
+    },
+    {
+        "id": "8745c1d074207c94",
+        "type": "comment",
+        "z": "f85f89256a27386d",
+        "name": "Serving a PDF",
+        "info": "",
+        "x": 140,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "9777edb0585c6724",
+        "type": "olcnr-preview-pdf",
+        "z": "f85f89256a27386d",
+        "connect_server": "2092e77360f6dade",
+        "template": "Certificate of Completion.OL-template",
+        "name": "",
+        "x": 390,
+        "y": 120,
+        "wires": [
+            [
+                "346109caf0968fd3"
+            ]
+        ]
+    },
+    {
+        "id": "346109caf0968fd3",
+        "type": "http response",
+        "z": "f85f89256a27386d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e28e349ff0c3ba5a",
+        "type": "comment",
+        "z": "f85f89256a27386d",
+        "name": "Basic print content creation flow",
+        "info": "",
+        "x": 190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b8560970931e584f",
+        "type": "debug",
+        "z": "f85f89256a27386d",
+        "name": "debug invoice inject",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 340,
+        "wires": []
     },
     {
         "id": "c6a3a04a6c864c73",
