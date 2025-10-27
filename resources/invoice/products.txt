@@ -1,0 +1,51 @@
+Code,SKU,WineName,Vintage,Region,Type,BottleSize,UnitPrice
+1001,WN-001,Château du Soleil Rouge,2018,Bordeaux,Red,750,42.50
+1002,WN-002,Monte Verde Chianti Classico,2019,Tuscany,Red,750,28.90
+1003,WN-003,Silver Creek Chardonnay,2021,California,White,750,22.00
+1004,WN-004,La Vieille Côte Rosé,2022,Provence,Rosé,750,19.50
+1005,WN-005,Alpenlicht Riesling,2020,Mosel,White,750,25.75
+1006,WN-006,Villa Azzurra Pinot Grigio,2021,Veneto,White,750,18.40
+1007,WN-007,Redstone Cabernet Sauvignon,2018,Napa Valley,Red,750,55.20
+1008,WN-008,El Toro Malbec Reserva,2019,Mendoza,Red,750,31.10
+1009,WN-009,Les Trois Collines Syrah,2020,Rhône,Red,750,33.00
+1010,WN-010,Golden Harbour Sauvignon Blanc,2022,Marlborough,White,750,24.60
+1011,WN-011,Castillo del Sol Tempranillo,2019,Rioja,Red,750,27.45
+1012,WN-012,Riverbank Pinot Noir,2020,Willamette Valley,Red,750,38.90
+1013,WN-013,Château Belle Nuit Merlot,2018,Bordeaux,Red,750,44.80
+1014,WN-014,Blue Horizon Zinfandel,2020,Sonoma,Red,750,29.70
+1015,WN-015,Colline Verde Vermentino,2021,Sardinia,White,750,21.30
+1016,WN-016,Crystal Lake Moscato,2022,Piedmont,White,750,17.90
+1017,WN-017,Terra Alta Garnacha,2020,Catalonia,Red,750,26.50
+1018,WN-018,Golden Hills Viognier,2021,Rhône,White,750,23.20
+1019,WN-019,High Ridge Shiraz,2019,Barossa Valley,Red,750,35.80
+1020,WN-020,Les Arbres Pinot Blanc,2021,Alsace,White,750,22.40
+1021,WN-021,Oakstone Reserve Cabernet Franc,2018,Loire Valley,Red,750,48.00
+1022,WN-022,Monte Clara Sangiovese,2020,Umbria,Red,750,27.60
+1023,WN-023,Riverbend Rosé,2022,California,Rosé,750,18.90
+1024,WN-024,Domus Aurea Brut,2021,Champagne,Sparkling,750,56.00
+1025,WN-025,Sierra Blanca Albariño,2021,Rías Baixas,White,750,24.10
+1026,WN-026,Cloudline Pinot Noir,2019,Oregon,Red,750,41.75
+1027,WN-027,Côte d’Or Chardonnay,2020,Burgundy,White,750,47.50
+1028,WN-028,Gran Viña Reserva,2017,Ribera del Duero,Red,750,54.90
+1029,WN-029,Amber Fields Rosé,2022,Provence,Rosé,750,20.40
+1030,WN-030,Golden Valley Chenin Blanc,2020,Stellenbosch,White,750,23.60
+1031,WN-031,Tenuta del Mare Nero d’Avola,2019,Sicily,Red,750,29.90
+1032,WN-032,Blue Mist Ice Wine,2021,Ontario,Dessert,375,48.30
+1033,WN-033,Château Lune d’Or,2018,Graves,Red,750,45.00
+1034,WN-034,Les Vignes de Pierre Beaujolais,2020,Beaujolais,Red,750,25.20
+1035,WN-035,Golden Crest Chardonnay,2021,Adelaide Hills,White,750,28.40
+1036,WN-036,Montclair Rosé Brut,2021,Champagne,Sparkling,750,52.70
+1037,WN-037,Silver Vale Syrah,2019,Central Coast,Red,750,34.90
+1038,WN-038,Estrella Verde Sauvignon Blanc,2022,Chile,White,750,19.80
+1039,WN-039,Red Horizon Merlot,2019,Washington,Red,750,32.40
+1040,WN-040,Gran Lago Tempranillo,2020,Navarra,Red,750,26.70
+1041,WN-041,Villa Bianca Pinot Nero,2018,Trentino,Red,750,33.90
+1042,WN-042,La Côte Blanche Chardonnay,2021,Burgundy,White,750,49.80
+1043,WN-043,Terra Rosa Cabernet Sauvignon,2019,Chile,Red,750,28.90
+1044,WN-044,Sol de Andalucía Verdejo,2022,Rueda,White,750,20.30
+1045,WN-045,Golden Meadow Rosé,2021,Languedoc,Rosé,750,18.60
+1046,WN-046,High Peak Riesling,2021,Washington,White,750,24.20
+1047,WN-047,La Torre Primitivo,2019,Puglia,Red,750,27.40
+1048,WN-048,Ocean Breeze Chardonnay,2020,California,White,750,22.50
+1049,WN-049,Mount Eden Shiraz,2018,McLaren Vale,Red,750,36.60
+1050,WN-050,Villa Serena Rosé Frizzante,2022,Veneto,Sparkling,750,19.20

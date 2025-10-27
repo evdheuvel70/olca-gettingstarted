@@ -2,60 +2,290 @@
     {
         "id": "f85f89256a27386d",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Getting Started",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "de42cc43e7e26a4a",
-        "type": "inject",
+        "id": "29a1dcee030266e5",
+        "type": "tab",
+        "label": "Sample data tactics",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0e5e8406f0ff4498",
+        "type": "tab",
+        "label": "Misc",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2092e77360f6dade",
+        "type": "OL Connect Server",
+        "url": "http://localhost:9340",
+        "ignorecer": false,
+        "name": "OL Connect Server",
+        "disableProgress": false
+    },
+    {
+        "id": "39120d5a35d860de",
+        "type": "olfnf-folder-capture-in",
         "z": "f85f89256a27386d",
+        "folder": "C:\\workspace_olca\\gettingstarted\\invoices\\in",
+        "folder_type": "str",
+        "create_directory": true,
+        "subfolder": false,
+        "ignoreempty": true,
+        "masks": "*.xml",
+        "masksregex": false,
+        "watchMethod": "fs",
         "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 200,
-        "y": 140,
+        "x": 130,
+        "y": 320,
         "wires": [
             [
-                "1b3430f4673463f5"
+                "7756c0c3c370636b"
             ]
         ]
     },
     {
-        "id": "1b3430f4673463f5",
-        "type": "debug",
+        "id": "7756c0c3c370636b",
+        "type": "olcnr-data-mapping",
         "z": "f85f89256a27386d",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 440,
-        "y": 140,
+        "connect_server": "2092e77360f6dade",
+        "dmConfiguration": "invoice.OL-datamapper",
+        "active": false,
+        "datafile": "filename",
+        "datafile_type": "msg",
+        "deletefile": false,
+        "name": "",
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "5f36c43b6dd2d515"
+            ]
+        ]
+    },
+    {
+        "id": "5f36c43b6dd2d515",
+        "type": "olcnr-paginated-content",
+        "z": "f85f89256a27386d",
+        "connect_server": "2092e77360f6dade",
+        "template": "invoice.OL-template",
+        "name": "",
+        "x": 600,
+        "y": 320,
+        "wires": [
+            [
+                "f1987038b784b0eb"
+            ]
+        ]
+    },
+    {
+        "id": "4d7e15bf026e84bf",
+        "type": "comment",
+        "z": "f85f89256a27386d",
+        "name": "Basic print content creation flow",
+        "info": "",
+        "x": 190,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "e3eb9739c50f65f4",
+        "id": "f1987038b784b0eb",
+        "type": "olcnr-paginated-output",
+        "z": "f85f89256a27386d",
+        "connect_server": "2092e77360f6dade",
+        "outputPreset": "invoice-PDF.OL-outputpreset",
+        "outputFolder": "C:\\workspace_olca\\gettingstarted\\invoices\\out\\",
+        "outputFolder_type": "str",
+        "create_directory": false,
+        "outputFilesToFolder": "C:\\workspace_olca\\gettingstarted\\invoices\\out",
+        "outputFilesToFolder_type": "str",
+        "outputOptions": "sendFilesToFolder",
+        "name": "",
+        "x": 840,
+        "y": 320,
+        "wires": [
+            [
+                "ebe2423229eab236"
+            ]
+        ]
+    },
+    {
+        "id": "ebe2423229eab236",
+        "type": "olfnf-file-operations",
+        "z": "f85f89256a27386d",
+        "operation": "move",
+        "source_file": "filename",
+        "source_file_type": "msg",
+        "target_file": "\"C:\\\\workspace_olca\\\\gettingstarted\\\\invoices\\\\out\\\\\" & file.basename ",
+        "target_file_type": "jsonata",
+        "create_directory": true,
+        "name": "move data file",
+        "x": 1060,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "22b60ee5e6ae7358",
+        "type": "comment",
+        "z": "f85f89256a27386d",
+        "name": "Inject sample data",
+        "info": "",
+        "x": 150,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cca9b12c4c5ebafa",
         "type": "inject",
         "z": "f85f89256a27386d",
+        "name": "10 records",
+        "props": [
+            {
+                "p": "source",
+                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\data\\invoices-10.xml",
+                "vt": "str"
+            },
+            {
+                "p": "target",
+                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\in\\invoices-10.xml",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "2523b93b025e25e8"
+            ]
+        ]
+    },
+    {
+        "id": "2523b93b025e25e8",
+        "type": "olfnf-file-operations",
+        "z": "f85f89256a27386d",
+        "operation": "copy",
+        "source_file": "source",
+        "source_file_type": "msg",
+        "target_file": "target",
+        "target_file_type": "msg",
+        "create_directory": true,
+        "name": "",
+        "x": 340,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5a065795523170f",
+        "type": "inject",
+        "z": "f85f89256a27386d",
+        "name": "100 records",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "invoices-100.xml",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "2523b93b025e25e8"
+            ]
+        ]
+    },
+    {
+        "id": "8b31c00fda032c4f",
+        "type": "inject",
+        "z": "f85f89256a27386d",
+        "name": "1k records",
+        "props": [
+            {
+                "p": "source",
+                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\data\\invoices-10.xml",
+                "vt": "str"
+            },
+            {
+                "p": "target",
+                "v": "C:\\workspace_olca\\gettingstarted\\invoices\\in\\invoices-10.xml",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "2523b93b025e25e8"
+            ]
+        ]
+    },
+    {
+        "id": "c6a3a04a6c864c73",
+        "type": "function",
+        "z": "0e5e8406f0ff4498",
+        "name": "IsJanuary",
+        "func": "const today = new Date();\n\n// getMonth() returns 0 = January, 1 = Feb, ...\nif (today.getMonth() === 0) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "1c21970efb8ba9c9"
+            ]
+        ]
+    },
+    {
+        "id": "1c21970efb8ba9c9",
+        "type": "debug",
+        "z": "0e5e8406f0ff4498",
+        "name": "IsJanuary",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f81467edc95bbcfd",
+        "type": "inject",
+        "z": "0e5e8406f0ff4498",
         "name": "",
         "props": [
             {
@@ -67,34 +297,114 @@
             }
         ],
         "repeat": "",
-        "crontab": "",
+        "crontab": "00 12 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 200,
-        "y": 220,
+        "x": 130,
+        "y": 120,
         "wires": [
             [
-                "d341b807e0c0922e"
+                "c6a3a04a6c864c73"
             ]
         ]
     },
     {
-        "id": "d341b807e0c0922e",
+        "id": "764b1052eb0a76d7",
+        "type": "function",
+        "z": "0e5e8406f0ff4498",
+        "name": "OddEvenDay",
+        "func": "const today = new Date();\nconst day = today.getDate();\n\nif (day % 2 !== 0) {\n    // Output 1: Odd day\n    return [msg, null];\n} else {\n    // Output 2: Even day\n    return [null, msg];\n}",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "c4018775483f9da5"
+            ],
+            [
+                "9198b04787dc9dd9"
+            ]
+        ]
+    },
+    {
+        "id": "c4018775483f9da5",
         "type": "debug",
-        "z": "f85f89256a27386d",
-        "name": "debug 2",
+        "z": "0e5e8406f0ff4498",
+        "name": "IsOddDay",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 420,
+        "x": 500,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c25836c1996c37a2",
+        "type": "inject",
+        "z": "0e5e8406f0ff4498",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 12 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "764b1052eb0a76d7"
+            ]
+        ]
+    },
+    {
+        "id": "9198b04787dc9dd9",
+        "type": "debug",
+        "z": "0e5e8406f0ff4498",
+        "name": "IsEvenDay",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
         "y": 220,
+        "wires": []
+    },
+    {
+        "id": "db03e46201ae8dc0",
+        "type": "comment",
+        "z": "0e5e8406f0ff4498",
+        "name": "Scheduling flows",
+        "info": "",
+        "x": 140,
+        "y": 80,
         "wires": []
     }
 ]
