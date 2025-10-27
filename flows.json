@@ -1,5 +1,13 @@
 [
     {
+        "id": "c737e2cbf16bff78",
+        "type": "tab",
+        "label": "Startup",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f85f89256a27386d",
         "type": "tab",
         "label": "Getting Started",
