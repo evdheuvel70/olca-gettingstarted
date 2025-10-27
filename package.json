@@ -1,0 +1,12 @@
+{
+    "name": "olca-gettingstarted",
+    "description": "Repository containing examples used in the Online Help for OL Connect Automate.",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
+        }
+    }
+}
